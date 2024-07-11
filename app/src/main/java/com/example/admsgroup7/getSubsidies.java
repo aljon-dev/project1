@@ -2,7 +2,7 @@ package com.example.admsgroup7;
 
 public class getSubsidies {
 
-    String FullName,InstanceNumber,Received,Received_Date,SponsoredBy,UserKey,key;
+    String FullName,InstanceNumber,Received,Received_Date,SponsoredBy,UserKey,key,DateToday,Time;
 
     public getSubsidies(){
 
@@ -62,5 +62,21 @@ public class getSubsidies {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getDateToday() {
+        return DateToday;
+    }
+
+    public void setDateToday(String dateToday) {
+        DateToday = dateToday;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public void setTime(String time) {
+        Time = time;
     }
 }

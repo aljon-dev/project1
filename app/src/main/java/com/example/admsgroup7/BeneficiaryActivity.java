@@ -28,6 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -160,6 +163,20 @@ public class BeneficiaryActivity extends AppCompatActivity {
            @Override
            public void onClick(DialogInterface dialog, int which) {
 
+               LocalDate Date = LocalDate.now();
+               String DateToday = String.valueOf(Date.getMonth());
+               String DayToday = String.valueOf(Date.getDayOfMonth());
+               String DateYear = String.valueOf(Date.getYear());
+
+               String LocalDateToday = ( (DateToday)+ "-" + (DayToday)+ "-"+ (DateYear));
+
+               LocalTime time = LocalTime.now();
+               String TimeToday = String.valueOf(time.getHour());
+               String minute = String.valueOf(time.getMinute());
+
+
+               String PostedTime = (TimeToday) +":"+ (minute);
+
                String RDate = ReceivedDate.getText().toString();
                String InsNumber = InstanceNumber.getText().toString();
                String SprBy = SponsoredBy.getText().toString();
@@ -174,6 +191,8 @@ public class BeneficiaryActivity extends AppCompatActivity {
                Subsidies.put("Received",Rcv);
                Subsidies.put("UserKey",key);
                Subsidies.put("FullName",FullName);
+               Subsidies.put("DateToday",LocalDateToday);
+               Subsidies.put("Time",PostedTime);
 
 
 

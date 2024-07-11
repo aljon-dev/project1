@@ -29,6 +29,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Document;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,21 +72,7 @@ public class Announcement extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if(which == 0){
-                        firebaseFirestore.collection("Announcement")
-                                .document(announcementInfo.getAnnouncementKey())
-                                .delete()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(Announcement.this, "Deleted", Toast.LENGTH_SHORT).show();
-                                        recreate();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(Announcement.this, "Failed To Delete", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                        Confirmation(announcementInfo);
                     }else if (which == 1 ){
                         dialog.dismiss();
                     }
@@ -149,12 +137,55 @@ public class Announcement extends AppCompatActivity {
     private void AddAnnouncement(String title,String description){
 
         String RandomID = UUID.randomUUID().toString();
+        LocalDate today = LocalDate.now();
+        LocalTime timeToday = LocalTime.now();
 
             Map<String,Object> AnnouncementInfo = new HashMap<>();
             AnnouncementInfo.put("Title",title);
             AnnouncementInfo.put("Description",description);
+            AnnouncementInfo.put("Posted_Date",today);
+            AnnouncementInfo.put("Posted_Time",timeToday);
 
         firebaseFirestore.collection("Announcement").document(RandomID).set(AnnouncementInfo);
         recreate();
+    }
+
+    private void Confirmation(AnnouncementInfo announcementInfo){
+
+
+
+        AlertDialog.Builder ActionDialog = new AlertDialog.Builder(this);
+        ActionDialog.setTitle("Are You Sure");
+        CharSequence options [] = {"Yes Delete it ", "Cancel"};
+        ActionDialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which == 0){
+                    firebaseFirestore.collection("Announcement")
+                            .document(announcementInfo.getAnnouncementKey())
+                            .delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(Announcement.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                    recreate();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(Announcement.this, "Failed To Delete", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                }else if (which == 1 ){
+                    dialog.dismiss();
+                }
+            }
+        });
+        ActionDialog.show();
+
+
+
+
     }
 }

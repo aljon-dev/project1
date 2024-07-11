@@ -55,20 +55,7 @@ public class Displaysubsidiary extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if(which == 0){
-                        firebaseFirestore.collection("Subsidies").document(GetSubsidies.getKey())
-                                .delete()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(Displaysubsidiary.this, "Deleted", Toast.LENGTH_SHORT).show();
-                                            recreate();
-                                        }else{
-                                            Toast.makeText(Displaysubsidiary.this, "Failed to delete ", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-
+                        Confirmation(GetSubsidies);
                     }else if (which == 1){
                         dialog.dismiss();
                     }
@@ -96,13 +83,37 @@ public class Displaysubsidiary extends AppCompatActivity {
                 });
 
 
+    }
+    private void Confirmation(getSubsidies GetSubsidies){
 
+        AlertDialog.Builder Action = new AlertDialog.Builder(Displaysubsidiary.this);
+        CharSequence options [] = {"Yes Delete it ", "Do Nothing"};
+        Action.setTitle("Are you sure");
+        Action.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which == 0){
 
+                    firebaseFirestore.collection("Subsidies").document(GetSubsidies.getKey())
+                            .delete()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(Displaysubsidiary.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                        recreate();
+                                    }else{
+                                        Toast.makeText(Displaysubsidiary.this, "Failed to delete ", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
 
-
-
-
-
+                }else if (which == 1){
+                    dialog.dismiss();
+                }
+            }
+        });
+        Action.show();
 
     }
 }

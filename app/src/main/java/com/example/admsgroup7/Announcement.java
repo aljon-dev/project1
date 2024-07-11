@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,9 +44,6 @@ public class Announcement extends AppCompatActivity {
 
     private FirebaseFirestore firebaseFirestore;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +62,41 @@ public class Announcement extends AppCompatActivity {
         adapter =new AnnouncementAdapter(this,AnnouncementItems);
         AnnouncementList.setAdapter(adapter);
 
+        adapter.setOnItemClickListener((announcementInfo -> {
+            AlertDialog.Builder ActionDialog = new AlertDialog.Builder(this);
+            ActionDialog.setTitle("Choose Action");
+            CharSequence options [] = {"Delete", "Do Nothing"};
+            ActionDialog.setItems(options, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(which == 0){
+                        firebaseFirestore.collection("Announcement")
+                                .document(announcementInfo.getAnnouncementKey())
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(Announcement.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                        recreate();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(Announcement.this, "Failed To Delete", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }else if (which == 1 ){
+                        dialog.dismiss();
+                    }
+                }
+            });
+            ActionDialog.show();
+
+
+
+        })
+        );
+
 
 
         firebaseFirestore.collection("Announcement").get().addOnCompleteListener(task -> {
@@ -69,6 +104,7 @@ public class Announcement extends AppCompatActivity {
                 AnnouncementItems.clear();
                 for(QueryDocumentSnapshot QDS : task.getResult()){
                     AnnouncementInfo announcementInfo = QDS.toObject(AnnouncementInfo.class);
+                    announcementInfo.setAnnouncementKey(QDS.getId());
                     AnnouncementItems.add(announcementInfo);
                 }
                 adapter.notifyDataSetChanged();

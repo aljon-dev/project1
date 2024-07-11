@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/asilog"
+    tools:context=".user_info_forms">
+
+
+
+    <EditText
+        android:id="@+id/FirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="150dp"
+        android:padding="12dp"
+        android:hint="FirstName"
+        android:inputType="textPersonName"
+        android:background="@drawable/edittext_border"
+        />
+
+    <EditText
+        android:id="@+id/MidName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="MidName"
+        android:inputType="textPersonName"
+        android:background="@drawable/edittext_border"
+        />
+
+    <EditText
+        android:id="@+id/LastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="LastName"
+        android:inputType="textPersonName"
+        android:background="@drawable/edittext_border"
+        />
+
+    <EditText
+        android:id="@+id/BDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="Birth Date"
+        android:inputType="text"
+        android:background="@drawable/edittext_border"
+        />
+
+
+    <EditText
+        android:id="@+id/Sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="Sex"
+        android:inputType="text"
+        android:background="@drawable/edittext_border"
+        />
+
+    <EditText
+        android:id="@+id/Nationality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="Nationality"
+        android:inputType="text"
+        android:background="@drawable/edittext_border"
+        />
+
+    <EditText
+        android:id="@+id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="Address"
+        android:inputType="text"
+        android:background="@drawable/edittext_border"
+        />
+    <EditText
+        android:id="@+id/Contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:hint="Contact number"
+        android:inputType="text"
+        android:background="@drawable/edittext_border"
+        />
+
+    <Button
+        android:id="@+id/FillButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Fill info"
+      />
+
+</LinearLayout>

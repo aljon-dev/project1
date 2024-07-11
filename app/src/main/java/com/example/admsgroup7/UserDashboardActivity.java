@@ -40,7 +40,7 @@ public class UserDashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth Auth;
 
-    private CardView settings,SubsidyStatus,FillInfo;
+    private CardView settings,SubsidyStatus,FillInfo,AnnouncementCard;
     private int Notification_Permission = 2;
 
     private int InitialSize = -1;
@@ -66,9 +66,18 @@ public class UserDashboardActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
         SubsidyStatus = findViewById(R.id.SubsidyStatus);
         FillInfo = findViewById(R.id.FillInfo);
+        AnnouncementCard = findViewById(R.id.AnnouncementCard);
+
         createNotificationChannel(this);
 
+
         AnnouncementItems = new ArrayList<>();
+
+        AnnouncementCard.setOnClickListener(v ->{
+
+            Intent intent = new Intent(UserDashboardActivity.this, DisplayUserAnnouncement.class);
+            startActivity(intent);
+        });
 
         logout.setOnClickListener(view -> {
             Auth.signOut();

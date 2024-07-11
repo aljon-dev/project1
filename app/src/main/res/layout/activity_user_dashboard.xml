@@ -54,8 +54,8 @@
 
         <LinearLayout
             android:id="@+id/row1"
-            android:layout_width="0dp"
-            android:layout_height="175dp"
+            android:layout_width="405dp"
+            android:layout_height="167dp"
             android:layout_marginTop="2dp"
             android:orientation="horizontal"
             android:padding="10dp"
@@ -66,7 +66,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/SubsidyStatus"
-                android:layout_width="0dp"
+                android:layout_width="361dp"
                 android:layout_height="146dp"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
@@ -74,7 +74,7 @@
                 app:cardCornerRadius="90dp">
 
                 <RelativeLayout
-                    android:layout_width="375dp"
+                    android:layout_width="match_parent"
                     android:layout_height="117dp">
 
                     <TextView
@@ -82,7 +82,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/subsidyImage"
-                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="28dp"
                         android:layout_marginTop="10dp"
                         android:text="Subsidy Status"
                         android:textColor="@color/black"
@@ -92,9 +93,48 @@
                         android:id="@+id/subsidyImage"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="54dp"
                         android:layout_marginTop="15dp"
                         android:src="@drawable/subsidy" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/AnnouncementCard"
+                android:layout_width="361dp"
+                android:layout_height="146dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="90dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="117dp">
+
+                    <TextView
+                        android:id="@+id/subsidyName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/subsidyImage1"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Announcement"
+                        android:textColor="@color/black"
+                        android:textSize="19sp" />
+
+                    <ImageView
+                        android:id="@+id/subsidyImage1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="54dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/announcement" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -139,7 +179,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:id="@+id/announcementImage"
-                        android:src="@drawable/announcement"
+                        android:src="@drawable/baseline_format_align_center_24"
                         android:layout_marginTop="15dp"
                         android:layout_centerHorizontal="true"/>
 

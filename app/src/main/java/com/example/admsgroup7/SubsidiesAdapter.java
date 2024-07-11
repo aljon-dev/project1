@@ -52,7 +52,7 @@ public class SubsidiesAdapter extends RecyclerView.Adapter<SubsidiesAdapter.Item
     }
     public static class ItemHolder extends RecyclerView.ViewHolder {
 
-        TextView FullName,InstanceNumber,Received,Received_Date,SponsoredBy;
+        TextView FullName,InstanceNumber,Received,Received_Date,SponsoredBy,Date,time;
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -61,6 +61,8 @@ public class SubsidiesAdapter extends RecyclerView.Adapter<SubsidiesAdapter.Item
             Received = itemView.findViewById(R.id.Received);
             Received_Date = itemView.findViewById(R.id.Received_Date);
             SponsoredBy = itemView.findViewById(R.id.SponsoredBy);
+            Date = itemView.findViewById(R.id.Date);
+            time = itemView.findViewById(R.id.time);
 
         }
         public void onBind (getSubsidies GetSubsidies){
@@ -70,6 +72,8 @@ public class SubsidiesAdapter extends RecyclerView.Adapter<SubsidiesAdapter.Item
             Received.setText(GetSubsidies.getReceived());
             Received_Date.setText(GetSubsidies.getReceived_Date());
             SponsoredBy.setText(GetSubsidies.getSponsoredBy());
+            Date.setText(GetSubsidies.getDateToday());
+            time.setText(GetSubsidies.getTime());
 
         }
     }

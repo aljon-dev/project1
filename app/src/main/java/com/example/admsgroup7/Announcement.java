@@ -137,14 +137,25 @@ public class Announcement extends AppCompatActivity {
     private void AddAnnouncement(String title,String description){
 
         String RandomID = UUID.randomUUID().toString();
-        LocalDate today = LocalDate.now();
-        LocalTime timeToday = LocalTime.now();
+        LocalDate Date = LocalDate.now();
+        String DateToday = String.valueOf(Date.getMonth());
+        String DayToday = String.valueOf(Date.getDayOfMonth());
+        String DateYear = String.valueOf(Date.getYear());
+
+        String LocalDateToday = ( (DateToday)+ "-" + (DayToday)+ "-"+ (DateYear));
+
+        LocalTime time = LocalTime.now();
+        String TimeToday = String.valueOf(time.getHour());
+        String minute = String.valueOf(time.getMinute());
+
+
+        String PostedTime = (TimeToday) +":"+ (minute);
 
             Map<String,Object> AnnouncementInfo = new HashMap<>();
             AnnouncementInfo.put("Title",title);
             AnnouncementInfo.put("Description",description);
-            AnnouncementInfo.put("Posted_Date",today);
-            AnnouncementInfo.put("Posted_Time",timeToday);
+            AnnouncementInfo.put("DateToday",LocalDateToday);
+            AnnouncementInfo.put("Time",PostedTime);
 
         firebaseFirestore.collection("Announcement").document(RandomID).set(AnnouncementInfo);
         recreate();

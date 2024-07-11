@@ -2,7 +2,7 @@ package com.example.admsgroup7;
 
 public class AnnouncementInfo {
 
-    String Title,Description,AnnouncementKey;
+    String Title,Description,AnnouncementKey,DateToday,Time;
 
     public AnnouncementInfo(){
 
@@ -30,6 +30,22 @@ public class AnnouncementInfo {
 
     public void setAnnouncementKey(String announcementKey) {
         AnnouncementKey = announcementKey;
+    }
+
+    public String getDateToday() {
+        return DateToday;
+    }
+
+    public void setDateToday(String dateToday) {
+        DateToday = dateToday;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public void setTime(String time) {
+        Time = time;
     }
 }
 

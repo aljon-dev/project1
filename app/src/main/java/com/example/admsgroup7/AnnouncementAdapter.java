@@ -57,16 +57,23 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
     public static class itemHolder extends RecyclerView.ViewHolder {
 
-        TextView  AnnouncementTitle,Message;
+        TextView  AnnouncementTitle,Message,Date,time;
         public itemHolder(@NonNull View itemView) {
             super(itemView);
         AnnouncementTitle = itemView.findViewById(R.id.AnnouncementTitle);
         Message = itemView.findViewById(R.id.Message);
+        Date = itemView.findViewById(R.id.Date);
+        time = itemView.findViewById(R.id.time);
+
 
         }
         public void onBind(AnnouncementInfo announcementInfo){
+
                 AnnouncementTitle.setText(announcementInfo.getTitle());
                 Message.setText(announcementInfo.getDescription());
+                Date.setText(announcementInfo.getDateToday());
+                time.setText(announcementInfo.getTime());
+
         }
     }
 }

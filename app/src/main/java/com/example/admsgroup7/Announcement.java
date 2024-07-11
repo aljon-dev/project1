@@ -119,5 +119,6 @@ public class Announcement extends AppCompatActivity {
             AnnouncementInfo.put("Description",description);
 
         firebaseFirestore.collection("Announcement").document(RandomID).set(AnnouncementInfo);
+        recreate();
     }
 }

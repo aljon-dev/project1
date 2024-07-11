@@ -51,6 +51,24 @@ public class DisplayUserSubsidies extends AppCompatActivity {
         adapter = new SubsidiesAdapter(this,SubsidiesList);
         subsidiaryView.setAdapter(adapter);
 
+        firebaseFirestore.collection("Subsidies")
+                .whereEqualTo("UserKey", UserId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(QueryDocumentSnapshot QDS : task.getResult()){
+                                       getSubsidies getSubsidies = QDS.toObject(getSubsidies.class);
+                                       SubsidiesList.add(getSubsidies);
+                                    }
+                                adapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(DisplayUserSubsidies.this, "Failed to fetch Data", Toast.LENGTH_SHORT).show();
+                            }
+                    }
+                });
+
 
     }
 

@@ -17,9 +17,20 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     private ArrayList<AnnouncementInfo> AnnouncementList;
     private Context context;
 
+    onItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(onItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public AnnouncementAdapter(Context context,ArrayList<AnnouncementInfo> AnnouncementList){
         this.context = context;
         this.AnnouncementList = AnnouncementList;
+    }
+
+    public interface onItemClickListener{
+        void onClick(AnnouncementInfo announcementInfo);
+
     }
 
     @NonNull
@@ -34,6 +45,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     public void onBindViewHolder(@NonNull AnnouncementAdapter.itemHolder holder, int position) {
         AnnouncementInfo announcementInfo =  AnnouncementList.get(position);
         holder.onBind(announcementInfo);
+        holder.itemView.setOnClickListener(v-> onItemClickListener.onClick(AnnouncementList.get(position)));
 
     }
 

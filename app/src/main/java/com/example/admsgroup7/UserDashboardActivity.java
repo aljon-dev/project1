@@ -104,7 +104,6 @@ public class UserDashboardActivity extends AppCompatActivity {
                 for(QueryDocumentSnapshot QDS : task.getResult()){
                     AnnouncementInfo announcementInfo = QDS.toObject(AnnouncementInfo.class);
 
-
                     if (announcementInfo != null) {
                         AnnouncementItems.add(announcementInfo);
                         String id = QDS.getId();  // Get the unique ID for each announcement
@@ -116,7 +115,9 @@ public class UserDashboardActivity extends AppCompatActivity {
                     }
                 }
                 if (InitialSize == -1) {
+
                     InitialSize =    AnnouncementItems.size();
+
                 } else {
                     if (!newAnnouncements.isEmpty()) {
                         new Handler().postDelayed(() -> showNotification(UserDashboardActivity.this), 1000);
@@ -138,7 +139,6 @@ public class UserDashboardActivity extends AppCompatActivity {
         }else{
             NotificationPermission();
         }
-
     }
 
 
